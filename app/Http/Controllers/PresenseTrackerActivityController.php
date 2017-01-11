@@ -6,17 +6,33 @@ use App\Device;
 use App\DeviceActivity;
 use App\ActivityBatch;
 use App\TrackerClient;
+
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class PresenceTrackerController extends Controller
+class PresenceTrackerActivityController extends Controller
 {
+    public function index(Request $request)
+    {
+        $batches = ActivityBatch::leftJoin('activities', 'activities.batch_id', '=', 'batches.id')
+            ->select('batches.*', 'count(*) as activities_count')
+            ->groupBy('batches.id')
+            ->orderBy('batches.start')
+            ->take(10)
+            ->get();
+
+        return response()->json([
+            'success' => true,
+            'batches' => $batches
+        ]);
+    }
+
     /**
      * API Endpoint for recieving devices activities .
      * @param Request $request
      * @return Response
      */
-    public function recieveActivities(Request $request)
+    public function store(Request $request)
     {
         $recieved_activities = $request->input('activities');
         $start = $request->input('interval.start');
