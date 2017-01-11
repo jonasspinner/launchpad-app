@@ -22,6 +22,11 @@ class SlackUser extends Model
         return $this->hasMany('App\SlackProp', 'author_id', 'id');
     }
 
+    public function devices()
+    {
+        return $this->hasMany('App\Device', 'owner_id', 'id');
+    }
+
     public function getName()
     {
         return ($this->real_name ? $this->real_name : '@' . $this->name);

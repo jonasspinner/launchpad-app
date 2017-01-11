@@ -12,17 +12,22 @@ class Device extends Model
      *
      * @var array
      */
-    protected $fillable = ['mac_address', 'hash'];
+    protected $fillable = ['name', 'mac_address', 'hash', 'owner_id'];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = ['mac_address', 'hash'];
+    protected $hidden = ['hash'];
 
     public function activites()
     {
         return $this->hasMany('App\DeviceActivity', 'device_id', 'id');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo('App\SlackUser', 'owner_id', 'id');
     }
 }

@@ -10,7 +10,7 @@ use App\TrackerClient;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class PresenceTrackerActivityController extends Controller
+class PTActivityController extends Controller
 {
     public function index(Request $request)
     {
@@ -28,7 +28,7 @@ class PresenceTrackerActivityController extends Controller
     }
 
     /**
-     * API Endpoint for recieving devices activities .
+     * API Endpoint for recieving devices activities.
      * @param Request $request
      * @return Response
      */

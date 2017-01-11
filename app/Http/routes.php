@@ -27,6 +27,17 @@ Route::get('api/door/change-status', 'DoorController@changeStatusLegacy');
 Route::get('door/change-status', 'DoorController@changeStatus');
 
 // presence-tracker
-Route::resource('api/presence-tracker/activities', 'PresenceTrackerActivityController', ['only' => [
-    'index', 'store'
-]]);
+Route::group(['prefix' => 'api/presence-tracker'], function () {
+    Route::resource('activities', 'PTActivityController', ['only' => [
+        'index', 'store'
+    ]]);
+    Route::resource('devices', 'PTDeviceController', ['only' => [
+        'store'
+    ]]);
+    Route::resource('clients', 'PTClientController', ['only' => [
+        'store'
+    ]]);
+    Route::resource('users.devices', 'PTUserDeviceController', ['only' => [
+        'store'
+    ]]);
+});

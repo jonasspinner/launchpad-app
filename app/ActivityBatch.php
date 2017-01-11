@@ -12,7 +12,7 @@ class ActivityBatch extends Model
      *
      * @var array
      */
-    protected $fillable = ['client_id'];
+    protected $fillable = ['client_id', 'start', 'end'];
 
     /**
      * The attributes that should be mutated to dates.
