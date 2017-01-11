@@ -26,3 +26,5 @@ Route::get('api/opening-times/current', 'OpeningTimeController@apiCurrent');
 Route::get('api/door/change-status', 'DoorController@changeStatusLegacy');
 Route::get('door/change-status', 'DoorController@changeStatus');
 
+// presence-tracker
+Route::post('api/presence-tracker/activities', 'PresenceTrackerController@recieveActivities')
